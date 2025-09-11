@@ -1,37 +1,49 @@
 🚀 Features
 
-Authentication UI (AuthForm.jsx) for login/signup
+-> Authentication UI (AuthForm.jsx) for login/signup
 
-Chat Application Layout (ChatApp.jsx) with sidebar, messages, and input
+-> Chat Application Layout (ChatApp.jsx) with sidebar, messages, and input
 
-Interactive Chat Interface (ChatInterface.jsx)
+-> Interactive Chat Interface (ChatInterface.jsx)
 
-Reusable Components
+-> Reusable Components
 
-ChatMessage.jsx → Renders individual chat messages
+-> ChatMessage.jsx → Renders individual chat messages
 
-ChatInput.jsx → Input field with placeholder animations
+-> ChatInput.jsx → Input field with placeholder animations
 
-ChatSidebar.jsx → Sidebar for navigation/history
+-> ChatSidebar.jsx → Sidebar for navigation/history
 
-PlaceholderField.jsx & PlaceholderInput.jsx → UI enhancements
+-> PlaceholderField.jsx & PlaceholderInput.jsx → UI enhancements
 
-Error Handling (NotFound.jsx).
+-> Error Handling (NotFound.jsx).
 
 📂 Project Structure
 
 src/
+ |
  └── components/
+      |
       ├── UI/                   # UI-specific components
+      |
       ├── lib/                  # Utility functions
+      |
       ├── AuthForm.jsx          # Authentication form
+      |
       ├── ChatApp.jsx           # Main Chat Application wrapper
+      |
       ├── ChatInput.jsx         # Chat input field
+      |
       ├── ChatInterface.jsx     # Chat interface (messages + input)
+      |
       ├── ChatMessage.jsx       # Single chat message UI
+      |
       ├── ChatSidebar.jsx       # Sidebar with options/chat history
+      |
       ├── NotFound.jsx          # 404 page
+      |
       ├── PlaceholderField.jsx  # Placeholder field component
+      |
       └── PlaceholderInput.jsx  # Placeholder input component
 
 
