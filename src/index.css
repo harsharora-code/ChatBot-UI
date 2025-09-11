@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* #root {
+  background-color: black;
+} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    --card: 255 255 255;
+    --card-foreground: 0 0 0;
+    --border: 229 229 229;
+    --input: 229 229 229;
+  }
+
+  .dark {
+    --background: 17 17 17;
+    --foreground: 255 255 255;
+    --card: 24 24 27;
+    --card-foreground: 255 255 255;
+    --border: 38 38 38;
+    --input: 38 38 38;
+  }
+
+  body {
+    @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))];
+  }
+}
