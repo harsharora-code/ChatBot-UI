@@ -1,12 +1,73 @@
-# React + Vite
+🚀 Features
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Authentication UI (AuthForm.jsx) for login/signup
 
-Currently, two official plugins are available:
+Chat Application Layout (ChatApp.jsx) with sidebar, messages, and input
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Interactive Chat Interface (ChatInterface.jsx)
 
-## Expanding the ESLint configuration
+Reusable Components
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ChatMessage.jsx → Renders individual chat messages
+
+ChatInput.jsx → Input field with placeholder animations
+
+ChatSidebar.jsx → Sidebar for navigation/history
+
+PlaceholderField.jsx & PlaceholderInput.jsx → UI enhancements
+
+Error Handling (NotFound.jsx).
+
+📂 Project Structure
+
+src/
+ └── components/
+      ├── UI/                   # UI-specific components
+      ├── lib/                  # Utility functions
+      ├── AuthForm.jsx          # Authentication form
+      ├── ChatApp.jsx           # Main Chat Application wrapper
+      ├── ChatInput.jsx         # Chat input field
+      ├── ChatInterface.jsx     # Chat interface (messages + input)
+      ├── ChatMessage.jsx       # Single chat message UI
+      ├── ChatSidebar.jsx       # Sidebar with options/chat history
+      ├── NotFound.jsx          # 404 page
+      ├── PlaceholderField.jsx  # Placeholder field component
+      └── PlaceholderInput.jsx  # Placeholder input component
+
+
+🛠️ Tech Stack
+
+Frontend: React + Vite
+
+Styling: Tailwind CSS / Custom CSS
+
+UI Components: Radix UI, ShadCN (optional based on usage)
+
+⚡ Getting Started
+
+Clone the repo
+
+git clone https://github.com/yourusername/ChatBot-UI.git
+
+cd ChatBot-UI
+
+
+1. Install dependencies
+
+npm install
+
+
+2. Start development server
+
+npm run dev
+
+
+3. Build for production
+
+npm run build
+
+
+4. Preview production build
+
+npm run preview
+
