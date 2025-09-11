@@ -23,27 +23,27 @@
 src/
  |
  └── components/
-      |
+      
       ├── UI/                   # UI-specific components
-      |
+      
       ├── lib/                  # Utility functions
-      |
+      
       ├── AuthForm.jsx          # Authentication form
-      |
+      
       ├── ChatApp.jsx           # Main Chat Application wrapper
-      |
+      
       ├── ChatInput.jsx         # Chat input field
-      |
+      
       ├── ChatInterface.jsx     # Chat interface (messages + input)
-      |
+      
       ├── ChatMessage.jsx       # Single chat message UI
-      |
+      
       ├── ChatSidebar.jsx       # Sidebar with options/chat history
-      |
+      
       ├── NotFound.jsx          # 404 page
-      |
+      
       ├── PlaceholderField.jsx  # Placeholder field component
-      |
+      
       └── PlaceholderInput.jsx  # Placeholder input component
 
 
