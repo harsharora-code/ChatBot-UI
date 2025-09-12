@@ -59,7 +59,7 @@ UI Components: Radix UI, ShadCN (optional based on usage)
 
 Clone the repo
 
-git clone https://github.com/yourusername/ChatBot-UI.git
+git clone https://github.com/harsharora-code/ChatBot-UI.git
 
 cd ChatBot-UI
 
