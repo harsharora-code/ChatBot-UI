@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import AuthForm from "./AuthForm";
-import ChatSidebar from "./ChatSidebar";
+import {ChatSidebar} from "./ChatSidebar";
 import ChatInterface from "./ChatInterface";
 
-export default function ChatApp() {
+export  function ChatApp() {
   const [user, setUser] = useState(null);
   const [chatSessions, setChatSessions] = useState([]);
   const [currentChatId, setCurrentChatId] = useState(null);

@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { ScrollArea } from "../components/UI/ScrollArea";
-import ChatMessage from "./ChatMessage";
+import {ChatMessage} from "./ChatMessage";
 import { ChatInput } from "./ChatInput";
 import { Button } from "../components/UI/Button";
 import { RotateCcw } from "lucide-react";
 
 export default function ChatInterface({
   chatId,
-  // messages,
   onSendMessage,
   onClearChat,
   isGenerating = false,
@@ -85,20 +84,22 @@ export default function ChatInterface({
             <p className="text-sm text-muted-foreground">
               {messages.length} messages
             </p>
+            
           </div>
           
-          {onClearChat && messages.length > 0 && (
+          {/* {onClearChat && messages.length > 0 && ( */}
             <Button
               variant="ghost"
               size="sm"
               onClick={handleClearChat}
-              className="gap-2"
+              className="gap-2 cursor-pointer"
               data-testid="button-clear-chat"
             >
               <RotateCcw className="w-4 h-4" />
               Clear Chat
             </Button>
-          )}
+          {/* )} */}
+          
         </div>
       )}
 

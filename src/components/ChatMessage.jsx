@@ -3,7 +3,7 @@ import { Button } from "../components/UI/Button";
 import { Copy, ThumbsUp, ThumbsDown } from "lucide-react";
 import { useState } from "react";
 
-export default function ChatMessage({ message, userAvatar, userName = "User" }) {
+export function ChatMessage({ message, userAvatar, userName = "User" }) {
   const [copied, setCopied] = useState(false);
   const [reaction, setReaction] = useState(null);
 

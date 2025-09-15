@@ -133,21 +133,13 @@ export function ChatInput() {
 
     if (!input.trim()) return;
 
-    // setMessages((prev) => [...prev, { sender: "user", text: input }]);
-
-    // setTimeout(() => {
-    //   setMessages((prev) => [
-    //     ...prev,
-    //     { sender: "bot", text: ` You asked about: "${input}"` },
-    //   ]);
-    // }, 1000);
     try {
       const response = await sendChat(input);
       setMessages((prev) => [...prev, { sender: "user", text: input }]);
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
-          {sender: "bot", text: ` Todo: " ${response.title}"`}
+          {sender: "bot", text: `Todo: ${response.title}`}
 
         ])
       }, 1000)

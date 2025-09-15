@@ -13,7 +13,7 @@ import {
   ChevronRight
 } from "lucide-react";
 
-export default function ChatSidebar({ 
+export function ChatSidebar({ 
   user, 
   chatSessions, 
   onNewChat, 
@@ -86,7 +86,7 @@ export default function ChatSidebar({
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
             <MessageSquare className="w-5 h-5 text-sidebar-primary" />
-            <span className="font-semibold text-sidebar-foreground">ChatBot AI</span>
+            <span className="font-semibold text-sidebar-foreground">EX.O</span>
           </div>
           {onToggleCollapse && (
             <Button 
@@ -101,8 +101,8 @@ export default function ChatSidebar({
         </div>
         
         <Button 
-          onClick={onNewChat} 
-          className="w-full gap-2"
+          onClick={() => window.location.reload()} 
+          className="w-full gap-2 cursor-pointer active:bg-white"
           data-testid="button-new-chat"
         >
           <Plus className="w-4 h-4" />
