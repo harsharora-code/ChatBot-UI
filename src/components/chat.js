@@ -16,14 +16,22 @@ import axios from "axios";
 //     }
 //   }
 // }
-export const sendChat = async(id) => {
-  try {
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
-    return  response.data;
+// export const sendChat = async(id) => {
+//   try {
+//     const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
+//     return  response.data;
+//     }
+//    catch (error) {
+//     console.error(error.message);
+//   }
+// }
+    export const sendChat  = async(req, res) => {
+      try {
+        const response = await axios.get("http://localhost:3000/all");
+        return response.data;
+      
+      } catch (error) {
+        console.error(error.message);
+      }
     }
-   catch (error) {
-    console.error(error.message);
-  }
-}
-    
 

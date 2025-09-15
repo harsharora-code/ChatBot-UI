@@ -139,11 +139,11 @@ export function ChatInput() {
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
-          {sender: "bot", text: `Todo: ${response.title}`}
+          {sender: "bot", text: `Todo: ${response.personalities[0].Name}`}
 
         ])
       }, 1000)
-      // setMessages((prev) => [...prev, { role: "assistant", content: response}]);
+   
       console.log("response: ",response);
     } catch (err) {
       console.log("Error :", err);
