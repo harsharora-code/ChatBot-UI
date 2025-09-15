@@ -16,6 +16,7 @@ export default function ChatInterface({
 }) {
   const scrollAreaRef = useRef(null);
   const [autoScroll, setAutoScroll] = useState(true);
+  const [, setMessages] = useState([]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {

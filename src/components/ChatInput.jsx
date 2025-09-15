@@ -2,6 +2,7 @@
 import { Button } from "../components/UI/Button";
 import { Textarea } from "../components/UI/TextArea";
 import { Send, Square } from "lucide-react";
+import { sendChat } from "../api/chat"; 
 
 // export default function ChatInput({ 
 //   onSendMessage, 
@@ -120,7 +121,6 @@ export default function ChatArea() {
   const [messages, setMessages] = useState([]);
 
   const handleChange = (e) => {
-    console.log("typing:", e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -129,14 +129,14 @@ export default function ChatArea() {
 
     if (!input.trim()) return;
 
-    setMessages((prev) => [...prev, { sender: "user", text: input }]);
-
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: ` You asked about: "${input}"` },
-      ]);
-    }, 1000);
+    try {
+      const response = await sendChat(input, messages);
+      setMessages((prev) => [...prev, { role: "user", content: input }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: response.data.response }]);
+      console.log("response: ",response);
+    } catch (err) {
+      console.log("Error :", err);
+    }
   };
 
   return (
