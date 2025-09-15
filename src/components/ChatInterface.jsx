@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ScrollArea } from "../components/UI/ScrollArea";
 import ChatMessage from "./ChatMessage";
-import ChatInput from "./ChatInput";
+import { ChatInput } from "./ChatInput";
 import { Button } from "../components/UI/Button";
 import { RotateCcw } from "lucide-react";
 
@@ -16,7 +16,7 @@ export default function ChatInterface({
 }) {
   const scrollAreaRef = useRef(null);
   const [autoScroll, setAutoScroll] = useState(true);
-  const [, setMessages] = useState([]);
+  const [ messages, setMessages] = useState([]);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
