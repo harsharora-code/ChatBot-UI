@@ -130,14 +130,22 @@ export default function ChatArea() {
 
     if (!input.trim()) return;
 
-    setMessages((prev) => [...prev, { sender: "user", text: input }]);
+    // setMessages((prev) => [...prev, { sender: "user", text: input }]);
 
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: ` You asked about: "${input}"` },
-      ]);
-    }, 1000);
+    // setTimeout(() => {
+    //   setMessages((prev) => [
+    //     ...prev,
+    //     { sender: "bot", text: ` You asked about: "${input}"` },
+    //   ]);
+    // }, 1000);
+    try {
+      const response = await sendChat(input, messages);
+      setMessages((prev) => [...prev, { role: "user", content: input }]);
+      setMessages((prev) => [...prev, { role: "assistant", content: response.data.response }]);
+      console.log("response: ",response);
+    } catch (err) {
+      console.log("Error :", err);
+    }
   };
 
   return (
