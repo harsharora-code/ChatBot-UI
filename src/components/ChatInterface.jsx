@@ -7,7 +7,7 @@ import { RotateCcw } from "lucide-react";
 
 export default function ChatInterface({
   chatId,
-  messages,
+  // messages,
   onSendMessage,
   onClearChat,
   isGenerating = false,
