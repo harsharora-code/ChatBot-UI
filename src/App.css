@@ -45,3 +45,22 @@
 .read-the-docs {
   color: #888;
 } */
+
+/* globals.css */
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.markdown th,
+.markdown td {
+  border: 1px solid #ccc;
+  padding: 2rem;
+  text-align: left;
+}
+
+.markdown th {
+  background-color: #f9fafb; /* Tailwind gray-50 */
+  font-weight: 600;
+}

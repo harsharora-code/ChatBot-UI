@@ -4,24 +4,25 @@ import ChatMessage from "./ChatMessage";
 import { ChatInput } from "./ChatInput";
 import { Button } from "../components/UI/Button";
 import { RotateCcw } from "lucide-react";
+import { sendChat } from "./chat"; 
 
 export default function ChatInterface({
   chatId,
-  // messages,
-  onSendMessage,
   onClearChat,
   isGenerating = false,
   onStopGeneration,
-  userName = "User"
+  userName = "User",
 }) {
   const scrollAreaRef = useRef(null);
   const [autoScroll, setAutoScroll] = useState(true);
-  const [ messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
 
-  // Auto-scroll to bottom when new messages arrive
+  // Auto-scroll when new messages arrive
   useEffect(() => {
     if (autoScroll && scrollAreaRef.current) {
-      const scrollContainer = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      const scrollContainer = scrollAreaRef.current.querySelector(
+        "[data-radix-scroll-area-viewport]"
+      );
       if (scrollContainer) {
         scrollContainer.scrollTop = scrollContainer.scrollHeight;
       }
@@ -30,13 +31,33 @@ export default function ChatInterface({
 
   const handleScroll = (e) => {
     const target = e.target;
-    const isNearBottom = target.scrollHeight - target.scrollTop - target.clientHeight < 100;
+    const isNearBottom =
+      target.scrollHeight - target.scrollTop - target.clientHeight < 100;
     setAutoScroll(isNearBottom);
   };
 
   const handleClearChat = () => {
-    console.log('Clear chat requested');
+    console.log("Clear chat requested");
+    setMessages([]);
     onClearChat?.();
+  };
+
+  const handleSendMessage = async (input) => {
+    if (!input.trim()) return;
+
+    // Add user message
+    setMessages((prev) => [...prev, { role: "user", content: input }]);
+
+    try {
+      const response = await sendChat(input, messages);
+      console.log(response);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: response.data.response },
+      ]);
+    } catch (err) {
+      console.error("Error:", err);
+    }
   };
 
   if (!chatId && messages.length === 0) {
@@ -46,27 +67,13 @@ export default function ChatInterface({
         <div className="flex-1 flex items-center justify-center p-8">
           <div className="text-center max-w-md">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                {/* <span className="text-primary-foreground text-sm font-medium">AI</span> */}
-              </div>
+              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center"></div>
             </div>
-            {/* <h2
-        className="mb-10 sm:mb-20 text-xl text-center sm:text-5xl dark:text-white text-black">
-      EX.O ChatBot
-      </h2> */}
-            {/* <p className="text-muted-foreground mb-6">
-              Start a conversation by typing a message below. I'm here to help with any questions you have!
-            </p> */}
-            {/* <div className="space-y-2 text-sm text-muted-foreground"> */}
-              {/* <p>• Ask me about programming concepts</p>
-              <p>• Get help with problem solving</p>
-              <p>• Discuss ideas and get feedback</p> */}
-            {/* </div> */}
           </div>
         </div>
-        
+
         <ChatInput
-          onSendMessage={onSendMessage}
+          onSendMessage={handleSendMessage}
           onStopGeneration={onStopGeneration}
           isGenerating={isGenerating}
           placeholder="Ask anything"
@@ -86,7 +93,7 @@ export default function ChatInterface({
               {messages.length} messages
             </p>
           </div>
-          
+
           {onClearChat && messages.length > 0 && (
             <Button
               variant="ghost"
@@ -104,21 +111,16 @@ export default function ChatInterface({
 
       {/* Messages Area */}
       <div className="flex-1 overflow-hidden">
-        <ScrollArea 
+        <ScrollArea
           ref={scrollAreaRef}
           className="h-full"
           onScrollCapture={handleScroll}
         >
-          <div className="p-6 space-y-0 min-h-full">
-            {messages.map((message) => (
-              <ChatMessage
-                key={message.id}
-                message={message}
-                userName={userName}
-              />
+          <div className="p-6 space-y-4 min-h-full">
+            {messages.map((msg, i) => (
+              <ChatMessage key={i} message={msg} userName={userName} />
             ))}
-            
-            {/* Scroll to bottom indicator */}
+
             {!autoScroll && messages.length > 3 && (
               <div className="sticky bottom-4 flex justify-center">
                 <Button
@@ -128,9 +130,13 @@ export default function ChatInterface({
                   onClick={() => {
                     setAutoScroll(true);
                     if (scrollAreaRef.current) {
-                      const scrollContainer = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+                      const scrollContainer =
+                        scrollAreaRef.current.querySelector(
+                          "[data-radix-scroll-area-viewport]"
+                        );
                       if (scrollContainer) {
-                        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+                        scrollContainer.scrollTop =
+                          scrollContainer.scrollHeight;
                       }
                     }
                   }}
@@ -146,7 +152,7 @@ export default function ChatInterface({
 
       {/* Input Area */}
       <ChatInput
-        onSendMessage={onSendMessage}
+        onSendMessage={handleSendMessage}
         onStopGeneration={onStopGeneration}
         isGenerating={isGenerating}
         placeholder="Ask anything"
