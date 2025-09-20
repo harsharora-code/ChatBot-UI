@@ -22,13 +22,21 @@
 
 ├── backend
     ├── package-lock.json
+    
     ├── package.json
+    
     ├── server.js
+    
     └── server.json
+    
 ├── eslint.config.js
+
 ├── index.html
+
 ├── package-lock.json
+
 ├── package.json
+
 ├── src
     ├── App.css
     ├── App.jsx
