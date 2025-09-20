@@ -1,16 +1,18 @@
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Avatar, AvatarFallback } from "../components/UI/Avatar";
 import { Button } from "../components/UI/Button";
 import { Copy, ThumbsUp, ThumbsDown } from "lucide-react";
 import { useState } from "react";
 
-export function ChatMessage({ message, userAvatar, userName = "User" }) {
+
   const [copied, setCopied] = useState(false);
   const [reaction, setReaction] = useState(null);
 
   const formatTime = (timestamp) => {
-    return new Date(timestamp).toLocaleTimeString([], { 
-      hour: '2-digit', 
-      minute: '2-digit' 
+    return new Date(timestamp).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -19,9 +21,9 @@ export function ChatMessage({ message, userAvatar, userName = "User" }) {
       await navigator.clipboard.writeText(message.content);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-      console.log('Message copied to clipboard');
+      console.log("Message copied to clipboard");
     } catch (err) {
-      console.error('Failed to copy message:', err);
+      console.error("Failed to copy message:", err);
     }
   };
 
@@ -32,7 +34,7 @@ export function ChatMessage({ message, userAvatar, userName = "User" }) {
   };
 
   // Typing indicator for bot messages
-  if (message.isTyping && message.sender === 'bot') {
+  if (message.isTyping && message.sender === "bot") {
     return (
       <div className="flex items-start space-x-3 mb-6">
         <Avatar className="w-8 h-8 bg-primary">
@@ -43,9 +45,18 @@ export function ChatMessage({ message, userAvatar, userName = "User" }) {
         <div className="flex-1">
           <div className="bg-card border border-card-border rounded-xl px-4 py-3 max-w-3xl">
             <div className="flex space-x-1">
-              <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-              <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-              <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+              <div
+                className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"
+                style={{ animationDelay: "0ms" }}
+              />
+              <div
+                className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"
+                style={{ animationDelay: "150ms" }}
+              />
+              <div
+                className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"
+                style={{ animationDelay: "300ms" }}
+              />
             </div>
           </div>
         </div>
@@ -53,9 +64,12 @@ export function ChatMessage({ message, userAvatar, userName = "User" }) {
     );
   }
 
-  if (message.sender === 'user') {
+  if (message.sender === "user") {
     return (
-      <div className="flex justify-end mb-6" data-testid={`message-user-${message.id}`}>
+      <div
+        className="flex justify-end mb-6"
+        data-testid={`message-user-${message.id}`}
+      >
         <div className="flex items-start space-x-3 max-w-3xl">
           <div className="flex-1 text-right">
             <div className="bg-primary text-primary-foreground rounded-xl px-4 py-3 inline-block">
@@ -79,63 +93,32 @@ export function ChatMessage({ message, userAvatar, userName = "User" }) {
 
   // Bot message
   return (
-    <div className="flex items-start space-x-3 mb-6 group" data-testid={`message-bot-${message.id}`}>
+    <div
+      className="flex items-start space-x-3 mb-6 group"
+      data-testid={`message-bot-${message.id}`}
+    >
       <Avatar className="w-8 h-8 bg-primary">
         <AvatarFallback className="bg-primary text-primary-foreground text-xs font-medium">
           AI
         </AvatarFallback>
       </Avatar>
-      
+
       <div className="flex-1">
-        <div className="bg-card border border-card-border rounded-xl px-4 py-3 max-w-3xl">
-          <p className="text-sm text-card-foreground whitespace-pre-wrap break-words">
+        <div className="prose prose-sm max-w-none text-card-foreground">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {message.content}
-          </p>
+          </ReactMarkdown>
         </div>
-        
+
         <div className="flex items-center justify-between mt-2">
           <div className="text-xs text-muted-foreground">
             {formatTime(message.timestamp)}
           </div>
-          
-          {/* Action buttons - show on hover */}
-          <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className="w-6 h-6"
-              onClick={handleCopy}
-              data-testid={`button-copy-${message.id}`}
-            >
-              <Copy className="w-3 h-3" />
-            </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className={`w-6 h-6 ${reaction === 'like' ? 'text-primary' : ''}`}
-              onClick={() => handleReaction('like')}
-              data-testid={`button-like-${message.id}`}
-            >
-              <ThumbsUp className="w-3 h-3" />
-            </Button>
-            
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className={`w-6 h-6 ${reaction === 'dislike' ? 'text-destructive' : ''}`}
-              onClick={() => handleReaction('dislike')}
-              data-testid={`button-dislike-${message.id}`}
-            >
-              <ThumbsDown className="w-3 h-3" />
-            </Button>
-          </div>
+          {/* ...action buttons... */}
         </div>
-        
+
         {copied && (
-          <div className="text-xs text-primary mt-1">
-            Copied to clipboard!
-          </div>
+          <div className="text-xs text-primary mt-1">Copied to clipboard!</div>
         )}
       </div>
     </div>
