@@ -14,8 +14,7 @@ export function ChatInput({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-    onSendMessage(input);
-    setInput(""); // clear after sending
+
   };
 
   return (
