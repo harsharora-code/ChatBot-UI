@@ -20,31 +20,46 @@
 
 📂 Project Structure
 
-src/
- |
- └── components/
-      
-      ├── UI/                   # UI-specific components
-      
-      ├── lib/                  # Utility functions
-      
-      ├── AuthForm.jsx          # Authentication form
-      
-      ├── ChatApp.jsx           # Main Chat Application wrapper
-      
-      ├── ChatInput.jsx         # Chat input field
-      
-      ├── ChatInterface.jsx     # Chat interface (messages + input)
-      
-      ├── ChatMessage.jsx       # Single chat message UI
-      
-      ├── ChatSidebar.jsx       # Sidebar with options/chat history
-      
-      ├── NotFound.jsx          # 404 page
-      
-      ├── PlaceholderField.jsx  # Placeholder field component
-      
-      └── PlaceholderInput.jsx  # Placeholder input component
+├── backend
+    ├── package-lock.json
+    ├── package.json
+    ├── server.js
+    └── server.json
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── src
+    ├── App.css
+    ├── App.jsx
+    ├── components
+    │   ├── AuthForm.jsx
+    │   ├── ChatApp.jsx
+    │   ├── ChatInput.jsx
+    │   ├── ChatInterface.jsx
+    │   ├── ChatMessage.jsx
+    │   ├── ChatSidebar.jsx
+    │   ├── NotFound.jsx
+    │   ├── PlaceholderField.jsx
+    │   ├── PlaceholderInput.jsx
+    │   ├── UI
+    │   │   ├── Avatar.jsx
+    │   │   ├── Button.jsx
+    │   │   ├── Card.jsx
+    │   │   ├── Input.jsx
+    │   │   ├── Label.jsx
+    │   │   ├── ScrollArea.jsx
+    │   │   ├── Separator.jsx
+    │   │   ├── Tabs.jsx
+    │   │   └── TextArea.jsx
+    │   ├── chat.js
+    │   └── lib
+    │   │   ├── queryClient.js
+    │   │   └── utils.js
+    ├── index.css
+    ├── main.jsx
+    └── tailwind.config.js
+└── vite.config.js
 
 
 🛠️ Tech Stack
